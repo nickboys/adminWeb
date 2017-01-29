@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration scan="true">
+	<include resource="org/springframework/boot/logging/logback/defaults.xml" />
+	<include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+	<!-- Properties -->
+	<springProperty scope="context" name="profile" source="spring.profiles.active"/>
+	<springProperty scope="context" name="application" source="spring.application.name"/>
+
+	<!-- INFO -->
+	<appender name="InfoRollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>/var/logs/gfbApp.log</file>
+		<encoder>
+			<pattern>${FILE_LOG_PATTERN}</pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>/var/logs/gfbApp.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>100MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+	</appender>
+
+	<!-- ASYNC -->
+	<appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+		<queueSize>512</queueSize>
+		<appender-ref ref="InfoRollingFile"/>
+	</appender>
+
+	<!-- loggers -->
+	<logger name="org.springframework.boot" level="INFO"/>
+	<logger name="com.vcredit" level="INFO"/>
+	
+	<logger name="javax.activation" level="WARN"/>
+	<logger name="javax.mail" level="WARN"/>
+	<logger name="javax.xml.bind" level="WARN"/>
+	<logger name="ch.qos.logback" level="WARN"/>
+	<logger name="com.codahale.metrics" level="WARN"/>
+	<logger name="com.netflix" level="INFO"/>
+	<logger name="com.netflix.discovery" level="INFO"/>
+	<logger name="com.ryantenney" level="WARN"/>
+	<logger name="io.undertow" level="WARN"/>
+	<logger name="org.apache" level="WARN"/>
+	<logger name="org.apache.catalina.startup.DigesterFactory" level="OFF"/>
+	<logger name="org.springframework" level="WARN"/>
+	<logger name="org.springframework.web" level="WARN"/>
+	<logger name="org.springframework.security" level="WARN"/>
+	<logger name="org.springframework.cache" level="WARN"/>
+	<logger name="org.thymeleaf" level="WARN"/>
+
+	<contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+		<resetJUL>true</resetJUL>
+	</contextListener>
+	
+	<root level="INFO">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="InfoRollingFile" />
+	</root>
+</configuration>

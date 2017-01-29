@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<head >
+    <title>个人信息管理系统</title>
+    <link href="../WebContent/css/default.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../WebContent/easyui/themes/default/easyui.css" />
+    <link rel="stylesheet" type="text/css" href="../WebContent/easyui/themes/icon.css" />
+    <script type="text/javascript" src="../WebContent/easyui/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="../WebContent/easyui/jquery.easyui.js"></script>
+	<!-- <script type="text/javascript" src="../WebContent/easyui/outlook2.js"> </script> -->
+    <script type="text/javascript">
+    $(function(){
+    	
+    	//$('#mygird').datagrid('load',jsons); 
+   	 /* $.ajax({
+           method : 'GET',
+           url : '../userManager/finds',
+           async : false,
+           dataType : 'json',
+           success : function(data) {
+                   //var	s = JSON.parse(data);//转换成json对象，必须的！！！不然有异常！！！ 
+                   var json= JSON.stringify(data); //可以将json对象转换成json对符串 
+                   $('#mygird').datagrid('loadData',JSON.parse(json));
+           },
+           error : function() {
+               alert('error');
+           }
+       });  */
+    	
+    	
+    	
+    	//var jsons={"name":"test","password":"123"}
+    	//初始化
+    	$('#mygird').datagrid({
+    		idField : 'name', // :说明哪个字段是一个标识字段 
+            height: 340,
+            width:1400,
+            rownumbers : true,
+            //url: jsons,
+           // method: 'POST',
+            //queryParams: { 'id': id },
+            title: 'user',
+            fitColumns: true,
+            fit : true,
+            singleSelect: false,
+          /*    rownumbers: true,
+            pagination: false,
+            nowrap: false,
+            pageSize: 10,
+            pageList: [10, 20, 50, 100, 150, 200], */ 
+            showFooter: true,
+            
+            columns: [[
+                { field: 'name', title: '姓名', width: 180, align: 'left' },
+                { field: 'password', title: '密码', width: 150, align: 'left' },
+                { field: 'status', title: '状态', width: 100, align: 'left' },
+                { field: '期次', title: ' 属性', width: 100, align: 'left' },
+                { field: '价格', title: '创建时间', width: 100, align: 'right' },
+                { field: '订阅数', title: '更新时间', width: 100, align: 'right' },
+                { field: '库存数', title: '创建时间', width: 100, align: 'right' },
+                { field: '邮寄方式', title: '方式', width: 80, align: 'left' }
+            ]],
+            toolbar: [{  
+                text: '添加',  
+                iconCls: 'icon-add',  
+                handler: function() {  
+                alert('添加数据')  
+                }  
+            }, '-', {  
+                text: '保存',  
+                iconCls: 'icon-save',  
+                handler: function() {  
+                alert('保存数据')  
+                }  
+            }], 
+
+            /* loader : function(param, success, error) {
+    			$.ajax({
+    				url : "../userManager/finds",
+    				data : param,
+    				type : "post",
+    				dataType : "json",
+    				success : function(data) {
+    					  var json= JSON.stringify(data); //可以将json对象转换成json对符串 
+    	                   $('#mygird').datagrid('loadData',JSON.parse(json));
+    				}
+    			})
+    		}               */
+            
+        });
+    	
+    	
+    	
+    	
+    }) 
+    </script>
+
+</head>
+<body>
+	<div  id="mygird" style="margin-top: 14em;" >
+	 <!-- <table class="easyui-datagrid" title="Basic DataGrid" style="width:1400px;height:600px"
+			data-options="singleSelect:true,collapsible:true,url:'../userManager/finds',method:'get'">
+		<thead >
+			<tr >
+				<th data-options="field:'id',width:400" style="width:400px">ID</th>
+				<th data-options="field:'name',width:400">姓名</th>
+				<th data-options="field:'password',width:400,align:'right'">密码</th>
+				<th data-options="field:'status',width:400,align:'right'">状态</th>
+				<th data-options="field:'s',width:450">属性</th>
+				<th data-options="field:'a',width:400,align:'center'">Status</th>
+			</tr>
+		</thead>
+	</table> -->
+	  
+	</div>
+	
+
+</body>
+</html>
